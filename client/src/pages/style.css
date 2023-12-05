@@ -1,0 +1,87 @@
+.showTop {
+  border-radius: 50%;
+  padding: 20px;
+  width: 5px;
+  height: 5px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+.intro-about-bg {
+  height: 400px;
+  width: 90%;
+  margin: auto;
+  padding: 30px;
+  border-radius: 70px 70px 0 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.intro-about-bg-border {
+  border: 2px #e9b237 solid;
+  height: 400px;
+  width: 97%;
+  border-radius: 70px 70px 0 0;
+}
+.events-list {
+  padding: 20px;
+  min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  column-gap: 30px;
+  row-gap: 40px;
+}
+.my-events-list {
+  margin: 100px 20px;
+  padding: 30px;
+  min-height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  column-gap: 50px;
+  row-gap: 50px;
+}
+.login-container,
+.register-container {
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  margin: 200px auto;
+  padding: 50px;
+  border-radius: 25px;
+}
+.to-register-link:hover {
+  text-decoration: underline;
+}
+.camp-container {
+  border: 1px black solid;
+  min-height: 100vh;
+}
+.camp-banner {
+  border: 1px red solid;
+  height: 500px;
+  width: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+.search-bar {
+  padding: 50px 100px;
+}
+.admin-dashboard-container {
+  min-height: 80vh;
+  margin: 100px auto;
+  width: 90%;
+  padding: 100px;
+}
+.camp-list-laoding-container {
+  width: 50%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

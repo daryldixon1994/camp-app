@@ -1,0 +1,85 @@
+.line {
+  width: 2px;
+  height: 150px;
+  background-color: #e9b237;
+}
+.card-section-about {
+  border: 1px black solid;
+  min-height: 620px;
+}
+.intro-card-about {
+  border-top: 0.6px rgb(214, 213, 213) solid;
+  width: 27%;
+  flex-wrap: 1;
+  padding: 30px 0 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 40px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.intro-card-about p {
+  width: 80%;
+  color: #4c5653;
+  font-size: 1.2em;
+  line-height: 30px;
+}
+.intro-card-about h3 {
+  font-size: 1.7em;
+  color: #171d1b;
+}
+.about-faq {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 150px 0;
+}
+.about-faq h1 {
+  font-size: 2.5em;
+  font-weight: 500;
+  padding: 40px;
+}
+.about-faq-bg {
+  position: relative;
+  height: 500px;
+  width: 40%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 70px 0 0 70px;
+}
+.about-faq-bg img {
+  position: absolute;
+  top: 0;
+  right: -12%;
+}
+.about-faq-bg .orange-container {
+  height: 150px;
+  width: 300px;
+  background-color: #e9b137cc;
+  position: absolute;
+  right: -10%;
+  bottom: -10%;
+  border-radius: 20px;
+}
+.about-faq-content {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+.about-faq-content p {
+  width: 90%;
+  line-height: 25px;
+}
+.about-faq-section {
+  width: 40%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.about-accordion {
+  width: 90%;
+}
