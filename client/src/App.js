@@ -11,6 +11,7 @@ import UserPrivateRoutes from "./routes/UserPrivateRoutes";
 import AdminPrivateRoutes from "./routes/AdminPrivateRoutes";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
+import UsersList from "./pages/UsersList";
 function App() {
   return (
     <div className="App">
@@ -27,10 +28,18 @@ function App() {
           }
         />
         <Route
-          path="/admin"
+          path="/add"
           element={
             <AdminPrivateRoutes>
               <AdminDashboard />
+            </AdminPrivateRoutes>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <AdminPrivateRoutes>
+              <UsersList />
             </AdminPrivateRoutes>
           }
         />

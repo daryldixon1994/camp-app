@@ -3,20 +3,20 @@ const fs = require("fs");
 const path = require("path");
 module.exports = async (req, res) => {
   try {
-    console.log(req.file);
     let { campId } = req.query;
-    const imgBuffer = fs.readFileSync(
-      path.join(
-        "D:/Dévelopement WEB/campapp/backend/",
-        "uploads",
-        req.file.filename
-      )
-    );
-    const base64Image = await imgBuffer.toString("base64");
+    // const imgBuffer = fs.readFileSync(
+    //   path.join(
+    //     "D:/Dévelopement WEB/campapp/backend/",
+    //     "uploads",
+    //     req.file.filename
+    //   )
+    // );
+    // const base64Image = await imgBuffer.toString("base64");
+    const imgUrl = `/uploads/${req.file.filename}`;
     const newCamp = await Camp.findByIdAndUpdate(
       campId,
       {
-        $set: { imgUrl: base64Image },
+        $set: { imgUrl },
       },
       { new: true }
     );

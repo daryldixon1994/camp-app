@@ -13,6 +13,22 @@ function AdminDashboard() {
   const [campPhoto, setCampPhoto] = useState({});
   const handleAddCamp = () => {
     setLoading(true);
+    let eventDate = new Date(campData.date).getTime();
+    let currentDate = new Date().getTime();
+    if (eventDate < currentDate) {
+      setLoading(false);
+      setError("Can't select past date");
+      return toast.error("Invalid Date", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
     let campForm = new FormData();
     campForm.append("photo", campPhoto[0]);
     campForm.append("title", campData.title);
@@ -29,6 +45,7 @@ function AdminDashboard() {
       .then((res) => {
         if (res.data.status) {
           setLoading(false);
+          setError("");
           toast("✅ Your event has been added successfully", {
             position: "top-center",
             autoClose: 5000,
@@ -150,6 +167,7 @@ function AdminDashboard() {
                   date: e.target.value,
                 });
               }}
+              error={error.includes("date") && error}
               required={true}
             />
             <Form.Input

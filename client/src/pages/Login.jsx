@@ -37,8 +37,8 @@ function Login() {
       })
       .catch((err) => {
         setLoading(false);
-        setError(err.data.error);
-        // console.dir(err);
+        // setError(err.data.error);
+        console.dir(err);
       });
   };
   return (
@@ -58,7 +58,6 @@ function Login() {
               }}
             />
             <Form.Field
-              id="form-input-control-last-name"
               control={Input}
               type={show ? "text" : "password"}
               placeholder="password"

@@ -7,6 +7,7 @@ import { Form, Icon } from "semantic-ui-react";
 import axios from "axios";
 function Events() {
   const [campsData, setCampsData] = useState();
+  // console.log()
   const [serverError, setServerError] = useState(false);
   const [regionSearch, setRegionSearch] = useState("");
   const [citySearch, setcitySearch] = useState("");
@@ -88,7 +89,7 @@ function Events() {
         </Form>
       </div>
       <div className="events-list">
-        {campsData && !serverError ? (
+        {campsData?.length > 0 && !serverError ? (
           // campsData.some((elt) => elt.users.includes(localStorage.getItem("id")))
           // ?
           campsData
@@ -109,8 +110,8 @@ function Events() {
             )
             .filter((elt) => (dateSearch ? elt.date.includes(dateSearch) : elt))
             .map((elt, i) => <EventItem key={i} {...elt} />)
-        ) : serverError && !campsData ? (
-          <h1>No available data</h1>
+        ) : serverError || campsData?.length === 0 ? (
+          <h1>No available data.</h1>
         ) : (
           <div className="camp-list-laoding-container">
             <h1>

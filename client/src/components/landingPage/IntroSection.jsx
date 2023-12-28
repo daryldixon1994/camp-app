@@ -4,13 +4,13 @@ function IntroSection() {
   const data = [
     {
       icon: "/assets/intro/icon-tent.svg",
-      title: "Europe locations",
-      text: "Embark on a captivating journey through the enchanting landscapes of Europe.",
+      title: "North african locations",
+      text: "Embark on a captivating journey through the enchanting landscapes of Tunisia.",
     },
     {
       icon: "/assets/intro/icon-cottage.svg",
-      title: "Top cottages in Europe",
-      text: "Indulge in luxury and comfort at the best cottages in Europe.",
+      title: "Top cottages in Tunisia",
+      text: "Indulge in luxury and comfort at the best cottages in Tunisia.",
     },
     {
       icon: "/assets/intro/icon-mountains.svg",

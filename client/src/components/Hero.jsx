@@ -1,6 +1,7 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 function Hero() {
   const options = {
     type: "loop",
@@ -35,7 +36,9 @@ function Hero() {
             Disconnect from the noise of everyday life and reconnect with the
             serenity of nature. Experience the tranquility of camping,
           </p>{" "}
-          <Button text="Book now" />
+          <Link to="/camps">
+            <Button text="Book now!" color="white" />
+          </Link>
         </div>
       </SplideSlide>
       <SplideSlide
@@ -50,7 +53,9 @@ function Hero() {
             camping adventure. Discover breathtaking landscapes, forge lifelong
             friendships, and create cherished memories.
           </p>{" "}
-          <Button text="Book your Escape!" color="white" />
+          <Link to="/camps">
+            <Button text="Book your Escape!" color="white" />
+          </Link>
         </div>
       </SplideSlide>
     </Splide>

@@ -1,6 +1,7 @@
 import React from "react";
 import "../style.css";
 import Button from "../Button";
+import { Link } from "react-router-dom";
 function LandingSection3() {
   const data = [
     {
@@ -41,7 +42,9 @@ function LandingSection3() {
             </div>
           ))}
         </div>
-        <Button text="Book now!" color="white" />
+        <Link to="/camps">
+          <Button text="Book now!" color="white" />
+        </Link>
       </div>
     </div>
   );

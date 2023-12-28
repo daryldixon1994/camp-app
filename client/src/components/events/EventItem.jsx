@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { FaCirclePlus } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
@@ -62,8 +62,8 @@ function EventItem({
   _id,
 }) {
   // console.log(users)
-  let date1 = new Date(date).getTime();
-  let date2 = new Date().getTime();
+  let eventDate = new Date(date).getTime();
+  let currentDate = new Date().getTime();
   const [state, dispatch] = React.useReducer(exampleReducer, {
     open: false,
     open2: false,
@@ -81,9 +81,23 @@ function EventItem({
   const [updateData, setUpdateData] = useState({});
   const [photoData, setPhotoData] = useState();
   const [newDate, setNewDate] = useState("");
-  let date3 = new Date(newDate).getTime();
-
   const navigate = useNavigate();
+  useEffect(() => {
+    if (eventDate <= currentDate) {
+      axios
+        .delete(`/camping/api/admin/deleteCamp?campId=${_id}`)
+        .then((res) => {
+          // setLoading(false);
+        })
+        .catch((err) => {
+          // if (!err.data.status) {
+          //   setError(err.data.error);
+          // }
+          console.dir(err);
+          // setLoading(false);
+        });
+    }
+  }, [_id, eventDate, currentDate ]);
   const handleJoinCamp = () => {
     setLoading(true);
     axios
@@ -169,7 +183,8 @@ function EventItem({
   };
   const handlePostponeCamp = () => {
     setLoading1(true);
-    if (date2 > date3) {
+    let date3 = new Date(newDate.newDate).getTime();
+    if (currentDate > date3) {
       setLoading1(false);
       return toast.error("Invalid date, can't set past date", {
         position: "bottom-left",
@@ -186,7 +201,8 @@ function EventItem({
         .put(`/camping/api/admin/postPoneCamp?campId=${_id}`, newDate)
         .then((res) => {
           setLoading1(false);
-          console.log(res);
+          dispatch({ type: "close2" });
+          // console.log(res);
         })
         .catch((err) => {
           console.dir(err);
@@ -200,7 +216,7 @@ function EventItem({
       style={
         isPostponed
           ? { border: "5px #051937 solid", backgroundColor: "#dddce2" }
-          : limiteParticipant === users.length || date1 > date2
+          : limiteParticipant === users.length || eventDate < currentDate
           ? { border: "5px #04492e solid", backgroundColor: "#72b594" }
           : {}
       }
@@ -208,17 +224,19 @@ function EventItem({
       <div
         className="event-img"
         style={{
-          backgroundImage: `url(data:image/gif;base64,${imgUrl})`,
+          backgroundImage: `url(${imgUrl})`,
         }}
       >
-        <RiImageEditFill
-          color="brown"
-          onClick={() => {
-            dispatch({ type: "open3", size: "mini" });
-          }}
-          className="edit-img-icon"
-          size={25}
-        />
+        {localStorage.getItem("isAdmin") === "true" && (
+          <RiImageEditFill
+            color="brown"
+            onClick={() => {
+              dispatch({ type: "open3", size: "mini" });
+            }}
+            className="edit-img-icon"
+            size={25}
+          />
+        )}
       </div>
 
       <h1>{title}</h1>
@@ -237,7 +255,7 @@ function EventItem({
           <li
             className="i open-users"
             onClick={() => {
-              localStorage.getItem("isAdmin" === "true") &&
+              localStorage.getItem("isAdmin") === "true" &&
                 dispatch({ type: "open4", size: "small" });
             }}
           >
@@ -279,7 +297,7 @@ function EventItem({
             style={{ color: "red", fontStyle: "italic", marginLeft: "20px" }}
           >
             {" "}
-            {date2 > date1 && "This event is expired"}
+            {currentDate > eventDate && "This event is expired"}
           </span>
         </h4>
         {users.length === limiteParticipant ? (
@@ -311,9 +329,9 @@ function EventItem({
               color="#f41a1a"
             />
           </div>
-        ) : localStorage.getItem("isUser") === "true" &&
-          date1 > date2 &&
-          limiteParticipant < users.length ? (
+        ) : !(localStorage.getItem("isAdmin") === "true") &&
+          eventDate > currentDate &&
+          limiteParticipant > users.length ? (
           <div className="event-check">
             <span
               onClick={() => {
@@ -355,7 +373,7 @@ function EventItem({
                   if (!token) {
                     navigate("/login");
                   } else {
-                    dispatch({ type: "open2", size: "small" });
+                    dispatch({ type: "open2", size: "fullscreen" });
                   }
                 }}
                 style={{ cursor: "pointer" }}
@@ -413,7 +431,6 @@ function EventItem({
         <Modal.Header>Update this event</Modal.Header>
         <Modal.Content>
           <Form>
-            <h1>Edit camp event</h1>
             <Form.Group widths="equal">
               <Form.Input
                 type="text"
@@ -465,7 +482,7 @@ function EventItem({
                   });
                 }}
               />
-              <Form.Input
+              {/* <Form.Input
                 type="date"
                 placeholder="Date"
                 onChange={(e) => {
@@ -474,7 +491,7 @@ function EventItem({
                     date: e.target.value,
                   });
                 }}
-              />
+              /> */}
               <Form.Input
                 type="text"
                 placeholder="Period"

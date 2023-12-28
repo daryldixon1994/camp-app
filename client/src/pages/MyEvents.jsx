@@ -6,6 +6,7 @@ import axios from "axios";
 import EventItem from "../components/events/EventItem";
 function MyEvents() {
   const [myEvents, setMyEvents] = useState();
+  console.log(myEvents);
   let id = localStorage.getItem("id");
   useEffect(() => {
     axios
@@ -17,10 +18,15 @@ function MyEvents() {
     <div>
       <PublicNavBar />
       <div className="my-events-list">
-        {myEvents &&
+        {myEvents?.length > 0 ? (
           // myEvents.some((elt) => elt.users.includes(localStorage.getItem("id")))
           // ?
-          myEvents.map((elt, i) => <EventItem key={i} {...elt} />)}
+          myEvents.map((elt, i) => <EventItem key={i} {...elt} />)
+        ) : (
+          <div>
+            <h1>No events yet.</h1>
+          </div>
+        )}
       </div>
       {/* <div
         style={{

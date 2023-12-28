@@ -1,6 +1,6 @@
 const express = require("express");
 const route = express.Router();
-const multer = require("../../middlewares/multer");
+const multer = require("../../middlewares/upload");
 
 // Register router : /camping/api/register
 route.post("/register", require("./register"));

@@ -116,9 +116,17 @@ function PublicNavBar() {
               style={({ isActive }) => {
                 return isActive ? styleObjActive : styleObjNotActive;
               }}
-              to="/admin"
+              to="/add"
             >
-              Dashboard
+              Add
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => {
+                return isActive ? styleObjActive : styleObjNotActive;
+              }}
+              to="/users"
+            >
+              Users
             </NavLink>
             <NavLink
               style={({ isActive }) => {

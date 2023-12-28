@@ -1,6 +1,6 @@
 const Camp = require("../../models/Camp");
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
 module.exports = async (req, res) => {
   try {
     let {
@@ -14,27 +14,31 @@ module.exports = async (req, res) => {
       desc,
       period,
     } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
+    // const imgUrl = `${req.protocol}://${req.headers.host}/file/${req.file.filename}`;
+    // console.log(imgUrl);
     if (
       req.file &&
-      req.body.title &&
-      req.body.limiteParticipant &&
-      req.body.region &&
-      req.body.city &&
-      req.body.place &&
-      req.body.date &&
-      req.body.price &&
-      req.body.desc &&
-      req.body.period
+      title &&
+      limiteParticipant &&
+      region &&
+      city &&
+      place &&
+      date &&
+      price &&
+      desc &&
+      period
     ) {
-      const imgBuffer = fs.readFileSync(
-        path.join(
-          "D:/Dévelopement WEB/campapp/backend/",
-          "uploads",
-          req.file.filename
-        )
-      );
-      const base64Image = await imgBuffer.toString("base64");
+      // const imgBuffer = fs.readFileSync(
+      //   path.join(
+      //     "D:/Dévelopement WEB/campapp/backend/",
+      //     "uploads",
+      //     req.file.filename
+      //   )
+      // );
+      // const base64Image = await imgBuffer.toString("base64");
+
+      const imgUrl = `/uploads/${req.file.filename}`;
       const newCamp = await new Camp({
         title,
         limiteParticipant,
@@ -44,7 +48,7 @@ module.exports = async (req, res) => {
         city,
         price,
         period,
-        imgUrl: base64Image,
+        imgUrl,
         desc,
       });
       await newCamp.save();

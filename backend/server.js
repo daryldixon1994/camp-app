@@ -1,28 +1,34 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const path = require("path");
 require("dotenv").config();
-
-//ENVIRONMENT VARIABLES
 const DB = process.env.DB;
 
-// CONNECT TO DATABASE
+// database connection
 mongoose
   .connect(
     `mongodb+srv://gmcws2024:${DB}@cluster0.4dmpkdc.mongodb.net/camping-app?retryWrites=true&w=majority`
   )
-  .then(() => console.log("CONNECTED TO DATABASE"))
-  .catch((err) => console.log(err));
+  .then(() => {
+    console.log("connected to database");
+  })
+  .catch((err) => {
+    console.log(err);
+    console.log("could not connect to database");
+  });
 
-//MIDDLEWARES
+// global middlewares
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // user routes
 app.use("/camping/api", require("./routes/user"));
+
 // admin routes
 app.use("/camping/api/admin", require("./routes/admin"));
 
 app.listen(5000, (err) => {
   if (err) throw err;
-  console.log("SERVER IS UP AND RUNNING");
+  console.log("SERVER IS UP AND RUNNING on 5000 ");
 });
