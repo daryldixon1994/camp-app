@@ -33,7 +33,7 @@ function AdminLogin() {
           localStorage.setItem("id", res.data.data.id);
           localStorage.setItem("token", res.data.data.token);
           localStorage.setItem("isAdmin", res.data.data.isAdmin);
-          navigate("/admin");
+          navigate("/add");
         }
       })
       .catch((err) => {

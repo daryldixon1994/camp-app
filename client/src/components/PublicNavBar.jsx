@@ -102,6 +102,14 @@ function PublicNavBar() {
               style={({ isActive }) => {
                 return isActive ? styleObjActive : styleObjNotActive;
               }}
+              to="/settings"
+            >
+              Settings
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => {
+                return isActive ? styleObjActive : styleObjNotActive;
+              }}
               to="/login"
               onClick={() => {
                 localStorage.clear();

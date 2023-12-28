@@ -6,7 +6,6 @@ import axios from "axios";
 import EventItem from "../components/events/EventItem";
 function MyEvents() {
   const [myEvents, setMyEvents] = useState();
-  console.log(myEvents);
   let id = localStorage.getItem("id");
   useEffect(() => {
     axios

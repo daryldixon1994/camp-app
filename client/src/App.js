@@ -12,6 +12,7 @@ import AdminPrivateRoutes from "./routes/AdminPrivateRoutes";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import UsersList from "./pages/UsersList";
+import Settings from "./pages/Settings";
 function App() {
   return (
     <div className="App">
@@ -24,6 +25,14 @@ function App() {
           element={
             <UserPrivateRoutes>
               <MyEvents />
+            </UserPrivateRoutes>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <UserPrivateRoutes>
+              <Settings />
             </UserPrivateRoutes>
           }
         />
